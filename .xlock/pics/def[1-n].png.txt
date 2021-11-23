@@ -1,0 +1,1 @@
+Put your png pics in this folder and name them as def[0-N].png where 0-N is a number and between 0-N.

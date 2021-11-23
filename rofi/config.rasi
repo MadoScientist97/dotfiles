@@ -1,0 +1,11 @@
+configuration {
+    width: 35;
+    lines: 5;
+    show-icons: true;
+    icon-theme: "Papirus";
+    combi-modi: "drun,run,ssh";
+    max-history-size: 50;
+    font: "Sauce Code Pro Nerd Font Mono 12";
+}
+
+@import "/usr/share/rofi/themes/purple.rasi"

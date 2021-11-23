@@ -1,0 +1,62 @@
+# Don't print a new line at the start of the prompt
+add_newline = false 
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character]      # The name of the module we are configuring is "character"
+#symbol = "➜"     # The "symbol" segment is being set to "➜"
+error_symbol = "[](red)"
+#use_symbol_for_status = true
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = false
+
+format = """
+$username\
+$hostname\
+$shlvl\
+$kubernetes\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$docker_context\
+$cmake\
+$dart\
+$deno\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$kotlin\
+$nodejs\
+$ocaml\
+$python\
+$rust\
+$conda\
+$aws\
+$env_var\
+$crystal\
+$cmd_duration\
+$jobs\
+$time\
+$status\
+$shell\
+$character"""
+
+[username]
+style_user = "green bold"
+style_root = "black bold"
+format = "[$user]($style)@(dimmed bold)"
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format = "[$hostname](red bold):"
+# trim_at = ".companyname.com"
+disabled = false
