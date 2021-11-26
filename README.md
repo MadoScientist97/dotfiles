@@ -1,4 +1,4 @@
-<h1> Please Readme First</h1>
+<h1> Please Read Me First</h1>
 <ul>
 <li>These are my personal Dotfiles.<br>
 <li>Inspired from people like ThePrimagen (for Nvim and tmux), Distrotube (for window managers and status bar), r/unixporn for some nice scripts, and a whole load of others on youtube.<br>
