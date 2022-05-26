@@ -1,4 +1,4 @@
-/nvim/packer.nvim
-/nvim/plugin
-/nvim/.vim
-/nvim/lua/plugins/.vim 
+nvim/packer.nvim
+nvim/plugin
+nvim/.vim
+nvim/lua/plugins/.vim 
