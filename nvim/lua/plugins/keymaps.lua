@@ -48,6 +48,9 @@ keymap("v","<S-k>",":m '<-2<CR>gv-gv",opts)
 keymap("x","J",":m '>+1<CR>gv-gv",opts)
 keymap("x","K",":m '<-2<CR>gv-gv",opts)
 
+-- Buffer delete Shortcut
+keymap("n","<S-b>",":Bdelete<CR>",opts)
+
 -- Telescope Shortcut TODO: Need to change it to its own plugin file.
 keymap("n","<leader>ps",":lua require('telescope.builtin').grep_string({search = vim.fn.input(\"Grep For > \")})<CR>",opts)
 
