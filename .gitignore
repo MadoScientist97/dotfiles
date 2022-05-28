@@ -1,3 +1,4 @@
+.gitignore
 nvim/packer.nvim
 nvim/plugin
 nvim/.vim
