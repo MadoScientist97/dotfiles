@@ -12,11 +12,18 @@ lsp_installer.on_sever_ready(function(server)
         local jsonls_opts = require("plugins.lsp.settings.jsonls")
         opts = vim.tbl_deep_extend("force",jsonls_opts,opts)
     end
-    
+
     if server.name == "sumneko_lua" then
         local sumneko_opts = require("plugins.lsp.settings.sumneko_lua")
         opts = vim.tbl_deep_extend("force",sumneko_opts,opts)
     end
-
+    if server.name == "ansiblels" then
+        local ansibleopts = require("plugins.lsp.settings.ansiblels")
+        opts = vim.tbl_deep_extend("force",ansibleopts,opts)
+    end
+    if server.name == "tsserver" then
+        local ansibleopts = require("plugins.lsp.settings.ansiblels")
+        opts = vim.tbl_deep_extend("force",ansibleopts,opts)
+    end
     server:setup(opts)
 end)

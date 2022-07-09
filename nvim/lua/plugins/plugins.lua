@@ -30,10 +30,10 @@ end
 -- My custom plugins
 return packer.startup(function(use)
     --  The package Manager
-    use "wbthomason/packer.nvim"                                    -- Manage packer itself
+    use "wbthomason/packer.nvim"                                    -- Manage packer by itself
     
     -- Look and feel
-    use "lunarvim/colorschemes"                                    -- Manage packer itself
+    use "lunarvim/colorschemes"                                     -- LunarVim colorschemes
     use 'gruvbox-community/gruvbox'                                 -- grubbox theme
     use 'Mofiqul/dracula.nvim'                                      -- Dracula Theme
     use 'kisom/eink.vim'                                            -- eink theme
@@ -41,19 +41,20 @@ return packer.startup(function(use)
     use 'kyazdani42/nvim-web-devicons'                              -- devions for nice looking icons
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}      -- Treesitter: better syntax highlighting
     use 'p00f/nvim-ts-rainbow'                                      -- Treesitter Rainbow brackets support
-    
+    use { 'tamton-aquib/staline.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
     -- utils : passive
     use 'christoomey/vim-tmux-navigator'                            -- Tmux integration for pane and window navigation
     use 'dominikduda/vim_current_word'                              -- Current-word-highlight
     use 'nvim-lua/plenary.nvim'                                     -- Usefulm lua function libraries
     use 'nvim-lua/popup.nvim'                                       -- popup implementation for neovim
-    use {'iamcco/markdown-preview.nvim' , cmd = 'MarkdownPreview'}  -- Preview Markdown Files
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, }) -- Preview Markdown Files
     use 'mhinz/vim-startify'                                        -- Startify: custom start page when starting vim alone
     use 'nvim-telescope/telescope.nvim'                             -- Telescope: fzf finder with nice features
     use 'tpope/vim-surround'                                        -- surround braket pair colors
     use 'akinsho/bufferline.nvim'                                   -- Fancier bufferlien
     
-
     -- utils: active
     use 'windwp/nvim-autopairs'                                     -- autopairs autocompletes "", (),[]... 
     use 'vim-utils/vim-man'                                         -- view man pages in vim
@@ -75,7 +76,7 @@ return packer.startup(function(use)
     
     -- 3rd Party Integration
     use 'tools-life/taskwiki'                                       -- Taskwiki (Taskwarrior integration)
-    use 'simplenote-vim/simplenote.vim'                             -- simplenote
+    use { 'simplenote-vim/simplenote.vim', as='simplenote'}                             -- simplenote
     
     -- cmp
     use 'hrsh7th/nvim-cmp'
@@ -93,7 +94,11 @@ return packer.startup(function(use)
     -- git stuff
     use "lewis6991/gitsigns.nvim"
     
+    -- Debugging
+    use 'mfussenegger/nvim-dap'                                           -- Dap (Debug Adapter Protocol) for Nvim
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }  -- UI on top of DAP for Nvim
     -- unused currently
+    -- use {'iamcco/markdown-preview.nvim' , cmd = 'MarkdownPreview'}  -- Preview Markdown Files
     -- use 'lyuts/vim-rtags'                                           -- vim bindings for rtags: (c/c++ code indexer)
     -- use 'jremmen/vim-ripgrep'                                       -- vim driver for rip grep
     -- use 'tpope/vim-fugitive'                                        -- fugitive

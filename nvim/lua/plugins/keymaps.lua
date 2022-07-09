@@ -9,24 +9,28 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Movement
-keymap("n","<leader>h","<C-w>h",opts)
-keymap("n","<leader>j","<C-w>j",opts)
-keymap("n","<leader>k","<C-w>k",opts)
-keymap("n","<leader>l","<C-w>l",opts)
+keymap("n","<C-h>","<C-w>h",opts)
+keymap("n","<C-j>","<C-w>j",opts)
+keymap("n","<C-k>","<C-w>k",opts)
+keymap("n","<C-l>","<C-w>l",opts)
 
--- Show Undotree TODO: Need to change it to its own plugin file.
-keymap("n","<leader>u",":UndotreeShow<CR>",opts)
-
--- Vert-auto-30-70-split
-keymap("n","<leader>pv",":wincmd v<CR> :Ex <bar> :vertical resize 30<CR>",opts)
-
--- Window Resize
-keymap("n","<leader>+",":vertical resize +5<CR>",opts)
-keymap("n","<leader>-",":vertical resize -5<CR>",opts)
+-- Window Resize TODO
+--keymap("n","<leader-k>",":vertical resize +5<CR>",opts)
+--keymap("n","<leader-j>",":vertical resize -5<CR>",opts)
+--keymap("n","<leader-l>",":horizontal resize +5<CR>",opts)
+--keymap("n","<leader-h>",":horizontal resize -5<CR>",opts)
 
 -- Navigate Buffers
 keymap("n","<S-l>",":bnext<CR>",opts)
 keymap("n","<S-h>",":bprevious<CR>",opts)
+
+-- Show Undotree TODO: Need to change it to its own plugin file.
+keymap("n","<leader>u",":UndotreeShow<CR>",opts)
+
+
+-- Vert-auto-30-70-split
+keymap("n","<leader>pv",":wincmd v<CR> :Ex <bar> :vertical resize 30<CR>",opts)
+
 
 
 -- Visual indent
@@ -63,8 +67,8 @@ keymap("n","<leader>gs",":G<CR>",{noremap = false, silent = true})
 keymap("n","<Esc><Esc>", "<Esc>:nohl<CR><Esc>",opts)
 
 -- Nerdtree Toggle
-keymap("n","<leader>t",":NvimTreeToggle<CR>",opts)
-keymap("v","<leader>t",":NvimTreeToggle<CR>",opts)
+keymap("n","<leader>f",":NvimTreeToggle<CR>",opts)
+keymap("v","<leader>f",":NvimTreeToggle<CR>",opts)
 
 -- ToggleTerm
 keymap("n","<leader>T",":ToggleTerm size=40 dir=~/ direction=float<CR>",opts)

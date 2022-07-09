@@ -60,7 +60,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show combi -lines 10 -fixed-num-lines 10 -width 30
+bindsym $mod+d exec --no-startup-id rofi -show combi -lines 10 -fixed-num-lines 10 -width 30
 bindsym $mod+x exec rofipass
 
 #bindsym $mod+d exec --no-startup-id i3-demnu-desktop
@@ -70,10 +70,10 @@ bindsym $mod+x exec rofipass
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -82,10 +82,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -94,7 +94,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -171,12 +171,19 @@ assign [class="Thunderbird"] $ws9
 assign [class="realvnc-vncviewer"] $ws10
 assign [class="vlc"] $ws7
 
+#Explicit floating modifier for certain windows.
+for_window [class="firefox" instance="Places"] floating enable
+for_window [class="Steam" title="x200: Steam News *"] floating enable
+for_window [class="Steam" title="Friends List"] floating enable
+for_window [class="Anki" instance="anki"] floating enable
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "rofi -show p -modi p:~/.pscripts/global/rofi-power-menu -width 20 -lines 6"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -209,57 +216,66 @@ set $bg-color               #9950F2
 set $inactive-bg-color      #5B318F
 set $text-color             #C9EBA4
 set $inactive-text-color    #DDE8D0
-set $urgent-bg-color        #ee4040
-set $border-color           #54E37A
+set $urgent-bg-color        #FC0000
+set $urgent-text-color      #FC0000
+set $border-color           #16154C
+set $bar-bg-color           "#16154C00"
+set $separator-color        #9aee7d
+# old set $border-color           #54E37A
 
 # window colors
 #                           border              background          text                    indicator
 client.focused              $bg-color           $bg-color           $text-color             $bg-color
 client.unfocused            $inactive-bg-color  $inactive-bg-color  $inactive-text-color    $inactive-bg-color
 client.focused_inactive     $inactive-bg-color  $inactive-bg-color  $inactive-text-color    $inactive-bg-color
-client.urgent               $urgent-bg-color    $urgent-bg-color    $text-color             $urgent-bg-color
+client.urgent               $urgnt-text-color   $bg-color           $urgent-text-color      $urgent-bg-color
 # original border color : fccc53
 hide_edge_borders vertical
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        i3bar_command /usr/bin/i3bar -t
+        i3bar_command /usr/bin/i3bar  -t
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
+        output primary
+        tray_output primary
+        tray_padding 1
         font pango:Sauce Code Pro Nerd Font 9
         separator_symbol ""
             position top
             colors {
-                background #9950f230
-                separator #9aee7d 
+                background $bar-bg-color
+                separator $separator-color
+                # older barder color "#C9EBA420"
                 #                   border              background          text
-                focused_workspace   "#C9EBA420"         "#9950F2"           "#C9EBA4" 
-                inactive_workspace  "#9950F230"         "#9950F230"         $inactive-text-color
-                urgent_workspace    $urgent-bg-color    $urgent-bg-color    $text-color 
+                focused_workspace   $bg-color           $border-color       "#15E43A" 
+                inactive_workspace  $bar-bg-color       $bar-bg-color       $inactive-text-color
+                urgent_workspace    $bar-bg-color       $bar-bg-color       $urgent-text-color 
             }
 }
 
 #origin fix
 
 for_window [instance="^steam_app_1182480" title="Origin"] floating enable
+for_window [class="origin.exe" title="Origin"] floating enable
 for_window [class="Origin.exe" title="Origin"] floating enable
 
 
 exec discord
 exec signal-desktop
-exec_always variety
-exec redshift-gtk -l 90:26
+exec variety
+exec redshift -c ~/.config/redshift/redshift.conf
 exec_always blueberry-tray
 exec timeshift
 exec firefox
 exec simplenote
 exec thunderbird
+exec cryptomator
 exec_always xautolock -time 10 -locker ~/.xlock/lock.sh -corners +00-
-exec_always xrandr --dpi 120
+exec_always xrandr --dpi 115
 exec_always nm-applet
-exec_always picom --config ~/.config/picom/picom.conf
+exec_always picom --experimental-backends -b 
 exec_always optimus-manager-qt
 exec_always --no-startup-id autotiling
 exec --no-startup-id ~/.local/bin/nextcloud
-
 #polybar Launch Script
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh

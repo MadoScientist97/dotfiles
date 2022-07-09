@@ -29,4 +29,7 @@ vim.g['vim_current_word#enabled'] = 0
 
 -- Simplenote Set filetype
 
-vim.g['SimplenoteFiletype'] = {'markdown'}
+vim.g['SimplenoteFiletype'] = 'markdown'
+
+-- tmux stuff
+vim.g['tmux_navigator_disable_when_zoomed'] = 1

@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-appname="pac"
-num=$(echo $(exec pacman -Q | wc -l))
-label=
-echo $(printf "%s :%s" "$label" "$num")
