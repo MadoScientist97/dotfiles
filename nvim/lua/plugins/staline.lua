@@ -3,7 +3,6 @@ if not status_ok then
   return
 end
 
-local staline = require('staline')
 local percentage = function()
   local current_line = vim.fn.line(".")
   local total_lines = vim.fn.line("$")
@@ -12,8 +11,14 @@ local percentage = function()
   }
   local line_ratio = current_line / total_lines
   local index = math.ceil(line_ratio * #chars)
-  return chars[index]
+  -- For the percentage Number
+  local perc = line_ratio * 100
+  perc = math.ceil(line_ratio)
+  perc = line_ratio * 100
+  local perc_str = tostring(math.ceil(perc))
+  return perc_str .. "%% " .. chars[index]
 end
+
 local time = function()
   return os.date("%a │ %H:%M %x")
 end
@@ -21,11 +26,11 @@ local my_colors = {n = "#9CCFD8", i = "#3E8FB0", c = "#286983", v = "#56959F"}
 staline.setup {
   sections = {
     left = {
-      'mode', ' ', {'StalineBranch', 'branch'}
+      'mode', '│', {'StalineBranch', 'branch'}
       -- branch,
     },
     mid = {{'StalineName', 'file_name'}},
-    right = {'-lsp', ' ', time, '  ', percentage}
+    right = {'-lsp', '│', time, ' │', percentage}
   },
   defaults = {
     true_colors = true, -- LSP highlighing
@@ -65,4 +70,3 @@ staline.setup {
 }
 vim.cmd [[hi StalineBranch guifg=#C4A7E7]]
 vim.cmd [[hi StalineName guifg=#EBBCBA]]
-

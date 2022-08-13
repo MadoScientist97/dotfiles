@@ -3,3 +3,4 @@ nvim/packer.nvim
 nvim/plugin
 nvim/.vim
 nvim/lua/plugins/.vim 
+nvim/lua/plugins/secrets

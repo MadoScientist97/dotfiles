@@ -76,6 +76,9 @@ return packer.startup(function(use)
     
     -- 3rd Party Integration
     use 'tools-life/taskwiki'                                       -- Taskwiki (Taskwarrior integration)
+    use 'powerman/vim-plugin-AnsiEsc'
+    use 'majutsushi/tagbar'
+    use 'farseer90718/vim-taskwarrior'
     use { 'simplenote-vim/simplenote.vim', as='simplenote'}                             -- simplenote
     
     -- cmp

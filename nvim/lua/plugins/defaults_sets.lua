@@ -1,6 +1,6 @@
-vim.cmd [[
+--[[vim.cmd [[
         autocmd VimEnter * hi normal ctermbg=NONE
-]]
+--]]
 
 vim.cmd [[
     if executable('rg')
@@ -26,6 +26,7 @@ vim.g['vimwiki_global_ext'] = 0
 vim.cmd "let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md', 'ext2syntax': {'.md':'markdown','.markd<bar>own':'markdown','mdown':'markdown','mdk':'markdown'}}]"
 vim.g['vim_current_word#excluded_filetypes'] = {'md'}
 vim.g['vim_current_word#enabled'] = 0
+vim.g['cmdheight'] = 0
 
 -- Simplenote Set filetype
 

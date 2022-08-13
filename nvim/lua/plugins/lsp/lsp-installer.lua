@@ -21,9 +21,5 @@ lsp_installer.on_sever_ready(function(server)
         local ansibleopts = require("plugins.lsp.settings.ansiblels")
         opts = vim.tbl_deep_extend("force",ansibleopts,opts)
     end
-    if server.name == "tsserver" then
-        local ansibleopts = require("plugins.lsp.settings.ansiblels")
-        opts = vim.tbl_deep_extend("force",ansibleopts,opts)
-    end
     server:setup(opts)
 end)

@@ -15,17 +15,17 @@ keymap("n","<C-k>","<C-w>k",opts)
 keymap("n","<C-l>","<C-w>l",opts)
 
 -- Window Resize TODO
---keymap("n","<leader-k>",":vertical resize +5<CR>",opts)
---keymap("n","<leader-j>",":vertical resize -5<CR>",opts)
---keymap("n","<leader-l>",":horizontal resize +5<CR>",opts)
---keymap("n","<leader-h>",":horizontal resize -5<CR>",opts)
+keymap("n","<A-K>",":resize +5<CR>",opts)
+keymap("n","<A-J>",":resize -5<CR>",opts)
+keymap("n","<A-L>",":vertical resize +5<CR>",opts)
+keymap("n","<A-H>",":vertical resize -5<CR>",opts)
 
 -- Navigate Buffers
 keymap("n","<S-l>",":bnext<CR>",opts)
 keymap("n","<S-h>",":bprevious<CR>",opts)
 
 -- Show Undotree TODO: Need to change it to its own plugin file.
-keymap("n","<leader>u",":UndotreeShow<CR>",opts)
+keymap("n","<leader>u",":UndotreeToggle<CR>",opts)
 
 
 -- Vert-auto-30-70-split
@@ -66,7 +66,7 @@ keymap("n","<leader>gs",":G<CR>",{noremap = false, silent = true})
 -- Clear Search Highlight
 keymap("n","<Esc><Esc>", "<Esc>:nohl<CR><Esc>",opts)
 
--- Nerdtree Toggle
+-- Nvim-tree Toggle
 keymap("n","<leader>f",":NvimTreeToggle<CR>",opts)
 keymap("v","<leader>f",":NvimTreeToggle<CR>",opts)
 

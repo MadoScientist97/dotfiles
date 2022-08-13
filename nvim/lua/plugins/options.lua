@@ -1,5 +1,7 @@
 -- All my sets
-o = vim.opt
+local o = vim.opt
+local wo = vim.wo
+local bo = vim.bo
 o.syntax = "on"
 o.exrc = true
 o.errorbells = false
@@ -14,12 +16,12 @@ o.scrolloff = 8
 o.termguicolors = true
 o.swapfile = false
 o.backup = false
-o.undodir = "${HOME}/.vim/nobackup"
+o.undodir = os.getenv("HOME") .. '/.vim/nobackup'
 o.undofile = true
 o.incsearch = true
 o.hidden = true
 o.ignorecase = true
-o.relativenumber = false
+o.relativenumber = true
 o.showmode = false
 o.signcolumn = "yes"
 o.clipboard = "unnamedplus"
@@ -29,8 +31,7 @@ o.sidescrolloff = 8
 o.splitbelow = true
 o.splitright = true
 o.filetype.plugin = "on"
-
-vim.cmd("highlight ColorColumn ctermbg=lightred")
--- CurrentWord bg colour
-vim.cmd("hi CurrentWord ctermbg=240")
-vim.cmd("hi CurrentWordTwins ctermbg=240")
+o.laststatus = 3
+-- vim.cmd("highlight ColorColumn ctermbg=lightred")
+-- CurrentWord bg colour for a future version
+o.cmdheight = 0
