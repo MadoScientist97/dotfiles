@@ -7,7 +7,7 @@ local percentage = function()
   local current_line = vim.fn.line(".")
   local total_lines = vim.fn.line("$")
   local chars = {
-    "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██"
+    "██", "▇▇", "▆▆", "▅▅", "▄▄", "▃▃", "▂▂", "▁▁","__", "  "
   }
   local line_ratio = current_line / total_lines
   local index = math.ceil(line_ratio * #chars)
@@ -16,27 +16,30 @@ local percentage = function()
   perc = math.ceil(line_ratio)
   perc = line_ratio * 100
   local perc_str = tostring(math.ceil(perc))
-  return perc_str .. "%% " .. chars[index]
+  return "%#Staline#"..perc_str.."%% ".."%#Staline#"..chars[index].." "
 end
 
+
+
 local time = function()
-  return os.date("%a │ %H:%M %x")
+  return "%#Staline#"..os.date("%a %H:%M %d/%m")
 end
-local my_colors = {n = "#9CCFD8", i = "#3E8FB0", c = "#286983", v = "#56959F"}
+local my_colors = {n = "#87D787", i = "#3E8FB0", c = "#286983", v = "#56959F"}
 staline.setup {
   sections = {
     left = {
-      'mode', '│', {'StalineBranch', 'branch'}
+      '-mode', {'StalineBranch', 'branch'}
       -- branch,
     },
     mid = {{'StalineName', 'file_name'}},
-    right = {'-lsp', '│', time, ' │', percentage}
+    right = {'-lsp',  time, ' ', 'cool_symbol', percentage}
   },
   defaults = {
     true_colors = true, -- LSP highlighing
     font_active = "none",
     branch_symbol = " ", -- Change the branch symbol
-    mod_symbol = "  " -- Change the modified symbol
+    mod_symbol = "  ", -- Change the modified symbol
+    full_path = false
   },
   mode_icons = {
     ['n'] = 'NORMAL',

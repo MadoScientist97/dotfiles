@@ -1,4 +1,5 @@
 -- All my sets
+
 local o = vim.opt
 local wo = vim.wo
 local bo = vim.bo

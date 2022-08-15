@@ -24,4 +24,4 @@ o.fillchars:append "horizup:―"
 o.fillchars:append "horizdown:―"
 -- For Nvim-tree
 vim.cmd "hi NvimTreeCursorLine guibg=#212329"
-vim.cmd "hi NvimTreeVertSplit guifg=lightgreen" --guibg=#5fafd7"
+vim.cmd "hi NvimTreeVertSplit guifg=#87D787" --guibg=#5fafd7"
