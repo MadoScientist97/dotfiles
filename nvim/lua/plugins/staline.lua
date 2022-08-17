@@ -7,7 +7,7 @@ local percentage = function()
   local current_line = vim.fn.line(".")
   local total_lines = vim.fn.line("$")
   local chars = {
-    "██", "▇▇", "▆▆", "▅▅", "▄▄", "▃▃", "▂▂", "▁▁","__", "  "
+    "██", "▇▇", "▆▆", "▅▅", "▄▄", "▃▃", "▂▂", "▁▁", "  "
   }
   local line_ratio = current_line / total_lines
   local index = math.ceil(line_ratio * #chars)
@@ -16,13 +16,13 @@ local percentage = function()
   perc = math.ceil(line_ratio)
   perc = line_ratio * 100
   local perc_str = tostring(math.ceil(perc))
-  return "%#Staline#"..perc_str.."%% ".."%#Staline#"..chars[index].." "
+  return "%#Staline#"..perc_str.."%% ".."%#StalineFill#"..chars[index].."%#Staline# "
 end
 
 
 
 local time = function()
-  return "%#Staline#"..os.date("%a %H:%M %d/%m")
+  return os.date("%a %H:%M %d/%m")
 end
 local my_colors = {n = "#87D787", i = "#3E8FB0", c = "#286983", v = "#56959F"}
 staline.setup {
