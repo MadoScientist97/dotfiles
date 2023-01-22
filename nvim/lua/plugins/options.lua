@@ -17,7 +17,7 @@ o.scrolloff = 8
 o.termguicolors = true
 o.swapfile = false
 o.backup = false
-o.undodir = os.getenv("HOME") .. '/.vim/nobackup'
+o.undodir = os.getenv("HOME") .. '/.local/var/vim/nobackup'
 o.undofile = true
 o.incsearch = true
 o.hidden = true
@@ -32,7 +32,7 @@ o.sidescrolloff = 8
 o.splitbelow = true
 o.splitright = true
 o.filetype.plugin = "on"
+o.cmdheight = 0
 o.laststatus = 3
 -- vim.cmd("highlight ColorColumn ctermbg=lightred")
 -- CurrentWord bg colour for a future version
-o.cmdheight = 0

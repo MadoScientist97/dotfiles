@@ -31,7 +31,7 @@ end
 return packer.startup(function(use)
     --  The package Manager
     use "wbthomason/packer.nvim"                                    -- Manage packer by itself
-    
+
     -- Look and feel
     use "lunarvim/colorschemes"                                     -- LunarVim colorschemes
     use 'gruvbox-community/gruvbox'                                 -- grubbox theme
@@ -40,6 +40,7 @@ return packer.startup(function(use)
     use 'soft-aesthetic/soft-era-vim'                               -- Soft-era-vim colorscheme
     use 'kyazdani42/nvim-web-devicons'                              -- devions for nice looking icons
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}      -- Treesitter: better syntax highlighting
+    use 'nvim-treesitter/playground'                                -- Treesitter Realtime Parser AST
     use 'p00f/nvim-ts-rainbow'                                      -- Treesitter Rainbow brackets support
     use { 'tamton-aquib/staline.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -54,33 +55,33 @@ return packer.startup(function(use)
     use 'nvim-telescope/telescope.nvim'                             -- Telescope: fzf finder with nice features
     use 'tpope/vim-surround'                                        -- surround braket pair colors
     use 'akinsho/bufferline.nvim'                                   -- Fancier bufferlien
-    
+
     -- utils: active
-    use 'windwp/nvim-autopairs'                                     -- autopairs autocompletes "", (),[]... 
+    use 'windwp/nvim-autopairs'                                     -- autopairs autocompletes "", (),[]...
     use 'vim-utils/vim-man'                                         -- view man pages in vim
     use 'kyazdani42/nvim-tree.lua'                                  -- nerdtree
     use 'akinsho/toggleterm.nvim'                                   -- toggle term
     use 'markstory/vim-zoomwin'                                     -- zoom window
     use 'moll/vim-bbye'                                    -- bbye?? Need to fill up later
 
-    -- utils: vim core 
+    -- utils: vim core
     use 'mbbill/undotree'                                           -- undotree
     use 'L3MON4D3/LuaSnip'                                          -- Lua Snippets
     use 'rafamadriz/friendly-snippets'                              -- Snippet collections
     use 'yuttie/comfortable-motion.vim'                             -- comfortable motion
-    
+
     -- vim apps (standalone)
     use 'vimwiki/vimwiki'                                           -- vimwiki: a full featured personal wiki
     use 'ThePrimeagen/vim-be-good'                                  -- vim-practice
     use 'ThePrimeagen/harpoon'                                      -- Primagen harpoon
-    
+
     -- 3rd Party Integration
     use 'tools-life/taskwiki'                                       -- Taskwiki (Taskwarrior integration)
     use 'powerman/vim-plugin-AnsiEsc'
     use 'majutsushi/tagbar'
     use 'farseer90718/vim-taskwarrior'
     use { 'simplenote-vim/simplenote.vim', as='simplenote'}                             -- simplenote
-    
+
     -- cmp
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-buffer'
@@ -88,25 +89,40 @@ return packer.startup(function(use)
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'saadparwaiz1/cmp_luasnip'
-    
+
     -- LSP stuff
     use "neovim/nvim-lspconfig"
-    use "williamboman/nvim-lsp-installer"
+    -- use "williamboman/nvim-lsp-installer"
+    use { "williamboman/mason.nvim" }
+    use "williamboman/mason-lspconfig.nvim"
     use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
-    
+
+    -- formatting
+    use "jose-elias-alvarez/null-ls.nvim"                                 -- Null ls formatter/diags
     -- git stuff
     use "lewis6991/gitsigns.nvim"
-    
+
     -- Debugging
     use 'mfussenegger/nvim-dap'                                           -- Dap (Debug Adapter Protocol) for Nvim
     use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }  -- UI on top of DAP for Nvim
+    use({
+      "aurum77/live-server.nvim",
+      run = function()
+        require"live_server.util".install()
+      end,
+      cmd = { "LiveServer", "LiveServerStart", "LiveServerStop" },
+    })                                                                    -- Live-server integration
+
+    -- Git
+    use 'tpope/vim-fugitive'                                           -- fugitive
+
+    -- Java
+    use 'mfussenegger/nvim-jdtls'                                         -- Java LSP
     -- unused currently
-    -- use {'iamcco/markdown-preview.nvim' , cmd = 'MarkdownPreview'}  -- Preview Markdown Files
-    -- use 'lyuts/vim-rtags'                                           -- vim bindings for rtags: (c/c++ code indexer)
-    -- use 'jremmen/vim-ripgrep'                                       -- vim driver for rip grep
-    -- use 'tpope/vim-fugitive'                                        -- fugitive
-    -- use 'luochen1990/rainbow'                                       -- Rainbow brackets
-    -- use 'ryanoasis/vim-devicons'                                    -- vim devicons
+    -- use 'lyuts/vim-rtags'                                              -- vim bindings for rtags: (c/c++ code indexer)
+    -- use 'jremmen/vim-ripgrep'                                          -- vim driver for rip grep
+    -- use 'luochen1990/rainbow'                                          -- Rainbow brackets
+    -- use 'ryanoasis/vim-devicons'                                       -- vim devicons
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()

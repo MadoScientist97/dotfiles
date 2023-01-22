@@ -19,8 +19,8 @@ dap.configurations.python = {
          -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
          -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
       local cwd = vim.fn.getcwd()
-        if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
-          return cwd .. '/venv/bin/python'
+        if vim.fn.executable(cwd .. '/bin/python') == 1 then
+          return cwd .. '/bin/python'
         elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
           return cwd .. '/.venv/bin/python'
         else
@@ -29,3 +29,24 @@ dap.configurations.python = {
       end;
     },
   }
+
+-- For Rust
+dap.adapters.lldb = {
+  type = 'executable',
+  command = '/usr/sbin/lldb-vscode', -- adjust as needed, must be absolute path
+  name = 'lldb'
+}
+
+dap.configurations.rust = {
+  {
+    name = 'Launch',
+    type = 'lldb',
+    request = 'launch',
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+  },
+}

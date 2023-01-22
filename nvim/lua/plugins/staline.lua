@@ -39,7 +39,7 @@ staline.setup {
     font_active = "none",
     branch_symbol = " ", -- Change the branch symbol
     mod_symbol = "  ", -- Change the modified symbol
-    full_path = false
+    full_path = true
   },
   mode_icons = {
     ['n'] = 'NORMAL',

@@ -5,5 +5,9 @@ if not dapin_status_ok then
   return
 end
 
+local dapins = require("dap-install")
+dapins.setup({
+  installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
+})
 require('plugins.dap.dap-install.config')
 require('plugins.dap.dap-install.handlers')

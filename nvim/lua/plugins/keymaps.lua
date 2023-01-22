@@ -54,9 +54,8 @@ keymap("x","K",":m '<-2<CR>gv-gv",opts)
 
 -- Buffer delete Shortcut
 keymap("n","<S-b>",":Bdelete<CR>",opts)
+keymap("n","<leader>bdf",":Bdelete!<CR>",opts)
 
--- Telescope Shortcut TODO: Need to change it to its own plugin file.
-keymap("n","<leader>ps",":lua require('telescope.builtin').grep_string({search = vim.fn.input(\"Grep For > \")})<CR>",opts)
 
 -- diffget
 keymap("n","<leader>gJ",":diffget //3<CR>",{noremap = false, silent = true})
@@ -75,3 +74,6 @@ keymap("n","<leader>T",":ToggleTerm size=40 dir=~/ direction=float<CR>",opts)
 
 -- Current Word Toggle
 keymap("n","<leader>cc",":VimCurrentWordToggle<CR>",opts)
+
+-- urlview integration
+keymap("n","<leader>we",":w<Home>silent <End> !urlview<CR>",opts)

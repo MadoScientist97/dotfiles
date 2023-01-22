@@ -1,15 +1,35 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
+local status_ok, mason = pcall(require, "mason")
 if not status_ok then
     return
 end
 
-local lspconfig = require("lspconfig")
+local status_ok, meson_lspconfig = pcall(require, "mason-lspconfig")
+if not status_ok then
+    return
+end
 
-local servers = {"jsonls","sumneko_lua","pyright","clangd","ansiblels","sqls","rust_analyzer"}
+local status_ok, lspconfig = pcall(require, "lspconfig")
+if not status_ok then
+    return
+end
 
-lsp_installer.setup {
-    ensure_installed = servers
-}
+
+mason.setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
+local servers = {"jsonls","sumneko_lua","pyright","clangd","ansiblels","sqls","rust_analyzer","tsserver","jdtls","nimls","asm_lsp"}
+
+meson_lspconfig.setup({
+  ensure_installed = servers
+})
+
 
 for _, server in pairs(servers) do
     local opts = {
@@ -22,3 +42,11 @@ for _, server in pairs(servers) do
     end
     lspconfig[server].setup(opts)
 end
+
+-- Meson Only Plugins
+
+require("mason-lspconfig").setup_handlers {
+   ["css-lsp"] = function ()
+        require("css_lsp").setup {}
+    end
+}
