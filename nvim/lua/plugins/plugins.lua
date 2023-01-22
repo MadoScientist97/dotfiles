@@ -55,6 +55,8 @@ return packer.startup(function(use)
     use 'nvim-telescope/telescope.nvim'                             -- Telescope: fzf finder with nice features
     use 'tpope/vim-surround'                                        -- surround braket pair colors
     use 'akinsho/bufferline.nvim'                                   -- Fancier bufferlien
+    use 'NvChad/nvim-colorizer.lua'                                 -- Gives me this -> #FF0000 #00FF00 #0000FF
+ 
 
     -- utils: active
     use 'windwp/nvim-autopairs'                                     -- autopairs autocompletes "", (),[]...
