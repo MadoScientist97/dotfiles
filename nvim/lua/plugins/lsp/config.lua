@@ -24,7 +24,7 @@ mason.setup({
     }
 })
 
-local servers = {"jsonls","sumneko_lua","pyright","clangd","ansiblels","sqls","rust_analyzer","tsserver","jdtls","nimls","asm_lsp"}
+local servers = {"jsonls","sumneko_lua","pyright","clangd","ansiblels","sqls","rust_analyzer","tsserver","jdtls","nimls","asm_lsp", "gopls"}
 
 meson_lspconfig.setup({
   ensure_installed = servers
