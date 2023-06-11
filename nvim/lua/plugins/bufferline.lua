@@ -73,7 +73,8 @@ bufferline.setup {
   },
   highlights = {
     fill = {
-      fg = { attribute = "fg", highlight = "#ff0000" },
+      --fg = { attribute = "fg", highlight = "#ff0000" }, was causing issues with group name being wrong
+      fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
     },
     background = {

@@ -24,7 +24,7 @@ mason.setup({
     }
 })
 
-local servers = {"jsonls","sumneko_lua","pyright","clangd","ansiblels","sqls","rust_analyzer","tsserver","jdtls","nimls","asm_lsp", "gopls"}
+local servers = {"jsonls","lua_ls","pyright","clangd","ansiblels","sqlls","rust_analyzer","tsserver","jdtls","nimls","asm_lsp", "gopls", "cssls"}
 
 meson_lspconfig.setup({
   ensure_installed = servers
@@ -42,11 +42,3 @@ for _, server in pairs(servers) do
     end
     lspconfig[server].setup(opts)
 end
-
--- Meson Only Plugins
-
-require("mason-lspconfig").setup_handlers {
-   ["css-lsp"] = function ()
-        require("css_lsp").setup {}
-    end
-}

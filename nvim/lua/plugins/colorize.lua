@@ -21,6 +21,6 @@ require 'colorizer'.setup({
     hsl_fn = true,
     mode = "background",
     tailwind = true,
-    sass = { enable = true, parsers = { css },},
+    sass = { enable = true, parsers = { "css" },},
   },
 })

@@ -1,48 +1,20 @@
--- following options are the default
--- each of these are documented in `:help nvim-tree.OPTION_NAME`
-local nvim_tree_icons = {
-    default = "",
-    symlink = "",
-    git = {
-        unstaged = "",
-        staged = "S",
-        unmerged = "",
-        renamed = "➜",
-        deleted = "",
-        untracked = "U",
-        ignored = "◌",
-    },
-    folder = {
-        default = "",
-        open = "",
-        empty = "",
-        empty_open = "",
-        symlink = "",
-    },
-}
+--
+-- This function has been generated from your
+--   view.mappings.list
+--   view.mappings.custom_only
+--   remove_keymaps
+--
+-- You should add this function to your configuration and set on_attach = on_attach in the nvim-tree setup call.
+--
+-- Although care was taken to ensure correctness and completeness, your review is required.
+--
+-- Please check for the following issues in auto generated content:
+--   "Mappings removed" is as you expect
+--   "Mappings migrated" are correct
+--
+-- Please see https://github.com/nvim-tree/nvim-tree.lua/wiki/Migrating-To-on_attach for assistance in migrating.
+--
 
-local status_ok, nvim_tree = pcall(require, "nvim-tree")
-if not status_ok then
-    return
-end
-
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-    return
-end
-
--- Replaces auto_close
-local tree_cb = nvim_tree_config.nvim_tree_callback
-vim.api.nvim_create_autocmd("BufEnter", {
-    nested = false,
-    callback = function()
-        if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-            vim.cmd "quit"
-        end
-    end
-})
-
--- Keymaps
 local function on_attach(bufnr)
   local api = require('nvim-tree.api')
 
@@ -62,6 +34,7 @@ local function on_attach(bufnr)
   vim.keymap.set('n', '<C-v>', api.node.open.vertical,                opts('Open: Vertical Split'))
   vim.keymap.set('n', '<C-x>', api.node.open.horizontal,              opts('Open: Horizontal Split'))
   vim.keymap.set('n', '<BS>',  api.node.navigate.parent_close,        opts('Close Directory'))
+  vim.keymap.set('n', 'l'   ,  api.node.open.edit,                    opts('Open'))
   vim.keymap.set('n', '<CR>',  api.node.open.edit,                    opts('Open'))
   vim.keymap.set('n', '<Tab>', api.node.open.preview,                 opts('Open Preview'))
   vim.keymap.set('n', '>',     api.node.navigate.sibling.next,        opts('Next Sibling'))
@@ -119,99 +92,3 @@ local function on_attach(bufnr)
   vim.keymap.set('n', 'v', api.node.open.vertical, opts('Open: Vertical Split'))
 
 end
-
-local function open_nvim_tree(data)
-
-  -- buffer is a real file on the disk
-  local real_file = vim.fn.filereadable(data.file) == 1
-
-  -- buffer is a [No Name]
-  local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
-
-  if not real_file and not no_name then
-    return
-  end
-
-  -- open the tree, find the file but don't focus it
-  require("nvim-tree.api").tree.toggle({ focus = false, find_file = true, })
-end
-
-nvim_tree.setup {
-    disable_netrw = true,
-    hijack_netrw = true,
-    auto_reload_on_write = true,
-    reload_on_bufenter = false,
---    ignore_ft_on_setup = {
---        "startify",
---        "dashboard",
---        "alpha",
---    },
-    open_on_tab = true,
-    hijack_cursor = false,
-    update_cwd = true,
-    diagnostics = {
-        enable = true,
-        icons = {
-            hint = "",
-            info = "",
-            warning = "",
-            error = "",
-        },
-    },
-    update_focused_file = {
-        enable = true,
-        update_cwd = true,
-        ignore_list = {},
-    },
-    system_open = {
-        cmd = nil,
-        args = {},
-    },
-    filters = {
-        dotfiles = false,
-        custom = {},
-    },
-    git = {
-        enable = true,
-        ignore = true,
-        timeout = 500,
-    },
-    view = {
-        width = 30,
-        -- height = 30,
-        hide_root_folder = false,
-        side = "left",
-        mappings = {
-            custom_only = false,
-        },
-    number = false,
-    relativenumber = false,
-    },
-    trash = {
-    cmd = "trash",
-    require_confirm = true,
-    },
-    actions = {
-    open_file = {
-        quit_on_open = false,
-        window_picker = {
-            enable = false,
-        },
-    },
-    },
-    renderer = {
-        icons = {
-            glyphs = nvim_tree_icons,
-        },
-    },
---  unknown options as of 22.05
---
---  update_to_buf_dir = {
---    enable = true,
---    auto_open = true,
---  },
---  auto_resize = true,
---  git_hl = 1,
---  root_folder_modifier = ":t",
---
-}

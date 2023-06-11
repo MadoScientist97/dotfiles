@@ -22,7 +22,13 @@ end
 
 
 local time = function()
-  return os.date("%a %H:%M %d/%m")
+    return os.date("%a %H:%M")
+end
+
+local colcount = function()
+    local r, c = unpack(vim.api.nvim_win_get_cursor(0))
+    c = c + 1
+    return r..":"..c.." "
 end
 local my_colors = {n = "#87D787", i = "#3E8FB0", c = "#286983", v = "#56959F"}
 staline.setup {
@@ -30,9 +36,10 @@ staline.setup {
     left = {
       '-mode', {'StalineBranch', 'branch'}
       -- branch,
+      ,'-lsp'
     },
     mid = {{'StalineName', 'file_name'}},
-    right = {'-lsp',  time, ' ', 'cool_symbol', percentage}
+    right = { '%{&fileencoding?&fileencoding:&encoding}', 'cool_symbol', colcount, percentage}
   },
   defaults = {
     true_colors = true, -- LSP highlighing

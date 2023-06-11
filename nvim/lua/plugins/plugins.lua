@@ -51,8 +51,11 @@ return packer.startup(function(use)
     use 'nvim-lua/plenary.nvim'                                     -- Usefulm lua function libraries
     use 'nvim-lua/popup.nvim'                                       -- popup implementation for neovim
     use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, }) -- Preview Markdown Files
-    use 'mhinz/vim-startify'                                        -- Startify: custom start page when starting vim alone
+    -- use 'mhinz/vim-startify'                                     -- Startify: custom start page when starting vim alone
+    use { 'glepnir/dashboard-nvim',
+        requires = {'nvim-tree/nvim-web-devicons'}}                 -- Nvim Dashboard (replaces startify)    
     use 'nvim-telescope/telescope.nvim'                             -- Telescope: fzf finder with nice features
+    use 'nvim-telescope/telescope-media-files.nvim'
     use 'tpope/vim-surround'                                        -- surround braket pair colors
     use 'akinsho/bufferline.nvim'                                   -- Fancier bufferlien
     use 'NvChad/nvim-colorizer.lua'                                 -- Gives me this -> #FF0000 #00FF00 #0000FF
