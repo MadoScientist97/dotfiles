@@ -35,13 +35,14 @@ return packer.startup(function(use)
     -- Look and feel
     use "lunarvim/colorschemes"                                     -- LunarVim colorschemes
     use 'gruvbox-community/gruvbox'                                 -- grubbox theme
+    use({ 'rose-pine/neovim', as = 'rose-pine' })                   -- rosepine  theme
     use 'Mofiqul/dracula.nvim'                                      -- Dracula Theme
     use 'kisom/eink.vim'                                            -- eink theme
     use 'soft-aesthetic/soft-era-vim'                               -- Soft-era-vim colorscheme
     use 'kyazdani42/nvim-web-devicons'                              -- devions for nice looking icons
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}      -- Treesitter: better syntax highlighting
     use 'nvim-treesitter/playground'                                -- Treesitter Realtime Parser AST
-    use 'p00f/nvim-ts-rainbow'                                      -- Treesitter Rainbow brackets support
+    -- use 'p00f/nvim-ts-rainbow'                                      -- Treesitter Rainbow brackets support
     use { 'tamton-aquib/staline.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
@@ -59,7 +60,6 @@ return packer.startup(function(use)
     use 'tpope/vim-surround'                                        -- surround braket pair colors
     use 'akinsho/bufferline.nvim'                                   -- Fancier bufferlien
     use 'NvChad/nvim-colorizer.lua'                                 -- Gives me this -> #FF0000 #00FF00 #0000FF
- 
 
     -- utils: active
     use 'windwp/nvim-autopairs'                                     -- autopairs autocompletes "", (),[]...
@@ -100,6 +100,7 @@ return packer.startup(function(use)
     -- use "williamboman/nvim-lsp-installer"
     use { "williamboman/mason.nvim" }
     use "williamboman/mason-lspconfig.nvim"
+    use {"WhoIsSethDaniel/mason-tool-installer.nvim"}                     -- Mason install tool
     use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
 
     -- formatting

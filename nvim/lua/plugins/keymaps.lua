@@ -31,8 +31,6 @@ keymap("n","<leader>u",":UndotreeToggle<CR>",opts)
 -- Vert-auto-30-70-split
 keymap("n","<leader>pv",":wincmd v<CR> :Ex <bar> :vertical resize 30<CR>",opts)
 
-
-
 -- Visual indent
 keymap("v","<","<gv",opts)
 keymap("v",">",">gv",opts)
@@ -56,7 +54,6 @@ keymap("x","K",":m '<-2<CR>gv-gv",opts)
 keymap("n","<S-b>",":Bdelete<CR>",opts)
 keymap("n","<leader>bdf",":Bdelete!<CR>",opts)
 
-
 -- diffget
 keymap("n","<leader>gJ",":diffget //3<CR>",{noremap = false, silent = true})
 keymap("n","<leader>gf",":diffget //2<CR>",{noremap = false, silent = true})
@@ -66,8 +63,10 @@ keymap("n","<leader>gs",":G<CR>",{noremap = false, silent = true})
 keymap("n","<Esc><Esc>", "<Esc>:nohl<CR><Esc>",opts)
 
 -- Nvim-tree Toggle
-keymap("n","<leader>f",":NvimTreeToggle<CR>",opts)
-keymap("v","<leader>f",":NvimTreeToggle<CR>",opts)
+-- keymap("n","<leader>f",":NvimTreeToggle<CR>",opts)
+
+-- Netrw Toggle
+keymap("n","<leader>.",":lua PnetrwToggle()<CR>",opts)
 
 -- ToggleTerm
 keymap("n","<leader>T",":ToggleTerm size=40 dir=~/ direction=float<CR>",opts)
@@ -77,3 +76,6 @@ keymap("n","<leader>cc",":VimCurrentWordToggle<CR>",opts)
 
 -- urlview integration
 keymap("n","<leader>we",":w<Home>silent <End> !urlview<CR>",opts)
+
+-- telescope
+keymap("n", "<leader>F", ":Telescope find_files<CR>", opts)

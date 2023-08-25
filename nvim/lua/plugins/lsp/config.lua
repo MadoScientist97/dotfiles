@@ -24,8 +24,8 @@ mason.setup({
     }
 })
 
-local servers = {"jsonls","lua_ls","pyright","clangd","ansiblels","sqlls","rust_analyzer","tsserver","jdtls","nimls","asm_lsp", "gopls", "cssls"}
-
+local servers = {"jsonls","lua_ls","pyright","clangd","ansiblels","sqlls","rust_analyzer","tsserver","jdtls","nimls", "gopls", "cssls"}
+local meson_servers = {"ltex-ls","asm_lsp"}
 meson_lspconfig.setup({
   ensure_installed = servers
 })
@@ -42,3 +42,17 @@ for _, server in pairs(servers) do
     end
     lspconfig[server].setup(opts)
 end
+
+local status_ok, mason_tool_installer = pcall(require, "mason-tool-installer")
+if not status_ok then
+    vim.notify("Could not find mason-tool-installer")
+    return
+end
+
+require('mason-tool-installer').setup {
+    ensure_installed = meson_servers,
+    auto_update = false,
+    run_on_start = true,
+    start_delay = 3000,
+    debounce_hours = 5,
+}

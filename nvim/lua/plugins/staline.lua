@@ -30,7 +30,8 @@ local colcount = function()
     c = c + 1
     return r..":"..c.." "
 end
-local my_colors = {n = "#87D787", i = "#3E8FB0", c = "#286983", v = "#56959F"}
+local accent_color = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID('Title')), 'fg#')
+local my_colors = {n = "#b8bb26", i = "#3E8FB0", c = "#286983", v = "#56959F"}
 staline.setup {
   sections = {
     left = {
