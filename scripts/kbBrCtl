@@ -1,0 +1,31 @@
+#!/bin/bash
+set +x
+set +e
+currBr=$(cat /sys/class/leds/smc\:\:kbd_backlight/brightness)
+if [[ $# -lt 1 ]]; then
+    brStep=32
+    brCtl=UP
+else
+    brStep=$1
+    if [[ $# -lt 2 ]]; then
+        brCtl=UP
+    else
+        brCtl=$2
+    fi
+fi
+echo $currBr
+echo $brStep
+echo $brCtl
+if [[ $brCtl == DOWN ]]; then
+    if [[ $(($currBr - $brStep))  -le 0 ]]; then
+        exit 0
+    fi
+    echo $(echo $currBr - $brStep | bc)  > /sys/class/leds/smc\:\:kbd_backlight/brightness
+else 
+    if [[ $brCtl == UP  ]]; then
+	if [[ $(($currBr + $brStep))  -ge 255  ]]; then
+            exit 0
+        fi
+        echo $(echo $currBr + $brStep | bc)  > /sys/class/leds/smc\:\:kbd_backlight/brightness
+    fi
+fi
