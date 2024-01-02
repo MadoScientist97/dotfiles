@@ -36,10 +36,14 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-# Brightness up
+# Screen Brightness up and down
 bindsym XF86MonBrightnessUp exec --no-startup-id scrBrCtl 10 UP
-# Brightness down
 bindsym XF86MonBrightnessDown exec --no-startup-id scrBrCtl 10 DOWN
+
+# Kb backlight Brightness up and down
+bindsym XF86KbdBrightnessUp exec --no-startup-id kbBrCtl 32 UP
+bindsym XF86KbdBrightnessDown exec --no-startup-id kbBrCtl 32 DOWN
+
 #for i3 lock
 bindsym $mod+Shift+x exec ~/.xlock/lock.sh
 
