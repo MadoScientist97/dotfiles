@@ -44,7 +44,7 @@ $character"""
 [character]      # The name of the module we are configuring is "character"
 # symbol = "➜"     # The "symbol" segment is being set to "➜"
 format='$symbol '
-symbol="[❯]"
+success_symbol="[❯](green)"
 error_symbol = "[](red)"
 #use_symbol_for_status = true
 
